@@ -37,8 +37,8 @@ android {
 }
 
 dependencies {
-//    implementation ("io.alterac.blurkit:blurkit:1.1.1")
-//    implementation("con.eightbitlab:blurview:1.6.6")
+
+    implementation (libs.lottie)
     implementation(libs.fk.blur.view.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

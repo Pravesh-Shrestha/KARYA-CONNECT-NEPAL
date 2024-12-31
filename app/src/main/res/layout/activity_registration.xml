@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registerbg1"
+    tools:context=".RegistrationActivity">
+
+    <ImageView
+        android:id="@+id/regappLogo"
+        android:layout_width="267dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/applogo1" />
+
+    <TextView
+        android:id="@+id/regborder"
+        android:layout_width="385dp"
+        android:layout_height="494dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regappLogo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="100dp"
+        android:textColorHint="#F8F3F3"
+        app:boxStrokeColor="#FDD835"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regappLogo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/regusernameText"
+            android:layout_width="315dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:drawablePadding="10dp"
+            android:hint="Enter Username"
+            android:textColor="#F8F3F3"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#F8F3F3"
+        app:boxStrokeColor="#FDD835"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/regemailText"
+            android:layout_width="315dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="10dp"
+            android:hint="Enter e-mail"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#F8F3F3"
+        app:boxStrokeColor="#FDD835"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/regcontactText"
+            android:layout_width="315dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_phone_24"
+            android:drawablePadding="10dp"
+            android:hint="Enter Phone Number"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#F8F3F3"
+        app:boxStrokeColor="#FDD835"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFB300">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/regpasswordText"
+            android:layout_width="315dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:hint="Enter Password"
+            android:inputType="text|textPassword"
+            android:textSize="20sp"
+            app:passwordToggleEnabled="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#F8F3F3"
+        app:boxStrokeColor="#FDD835"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFB300">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/regconfirmPassword"
+            android:layout_width="315dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:hint="Confirm Password"
+            android:inputType="text|textPassword"
+            android:textSize="20sp"
+            app:passwordToggleEnabled="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/registerButtn"
+        android:layout_width="165dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#F21616"
+        android:text="Register"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:layout_width="289dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regappLogo">
+
+        <RadioButton
+            android:id="@+id/regclientRadio"
+            android:layout_width="116dp"
+            android:layout_height="31dp"
+            android:text="Client"
+            android:textColor="#F2DD7C"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/regfreelancerRadio"
+            android:layout_width="155dp"
+            android:layout_height="35dp"
+            android:text="Freelancer"
+            android:textColor="#F2DD7C"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/regBorder2"
+        android:layout_width="343dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regborder" />
+
+    <ImageView
+        android:id="@+id/githubIcon"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/googleIcon"
+        app:layout_constraintTop_toBottomOf="@+id/regborder"
+        app:srcCompat="@drawable/githubicon" />
+
+    <ImageView
+        android:id="@+id/googleIcon"
+        android:layout_width="61dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regborder"
+        app:srcCompat="@drawable/googleicon" />
+
+    <ImageView
+        android:id="@+id/facebookIcon"
+
+        android:layout_width="76dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regborder"
+        app:srcCompat="@drawable/facebookicon" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
