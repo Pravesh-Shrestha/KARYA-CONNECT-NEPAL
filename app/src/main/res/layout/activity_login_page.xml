@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/newbglogin"
+    android:background="@drawable/bglogin"
     android:backgroundTintMode="add"
     tools:context=".LoginPage">
 
@@ -20,17 +20,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/applogo1" />
 
-    <com.github.furkankaplan.fkblurview.FKBlurView
-        android:id="@+id/glassFrame"
-        android:layout_width="381dp"
-        android:layout_height="593dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="52dp"
+<!--    <com.github.furkankaplan.fkblurview.FKBlurView-->
+<!--        android:id="@+id/glassFrame"-->
+<!--        android:layout_width="381dp"-->
+<!--        android:layout_height="593dp"-->
+<!--        android:layout_marginStart="12dp"-->
+<!--        android:layout_marginTop="52dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView">-->
+
+
+<!--    </com.github.furkankaplan.fkblurview.FKBlurView>-->
+
+    <TextView
+        android:id="@+id/loginFrame"
+        android:layout_width="359dp"
+        android:layout_height="406dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/border"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-
-    </com.github.furkankaplan.fkblurview.FKBlurView>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userInputLayout"
