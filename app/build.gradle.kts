@@ -5,6 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.karyaconnectnepal"
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.karyaconnectnepal"
@@ -35,6 +36,9 @@ android {
 
 dependencies {
 
+
+
+    implementation(libs.lottie)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.fk.blur.view.android)

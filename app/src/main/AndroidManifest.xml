@@ -13,8 +13,6 @@
         android:theme="@style/Theme.KaryaConnectNepal"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
-=======
             android:name=".SplashPage"
             android:exported="true">
             <intent-filter>
@@ -42,7 +40,6 @@
             </intent-filter>
         </activity>
         <activity
->>>>>>> 531ff00afb9861f125cb738d653585ecc9aae770
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

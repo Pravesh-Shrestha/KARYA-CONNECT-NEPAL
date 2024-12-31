@@ -7,7 +7,6 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,107 +14,84 @@ import com.github.furkankaplan.fkblurview.FKBlurView
 
 class LoginPage : AppCompatActivity() {
 
-    lateinit var glass: FKBlurView
-    lateinit var username: EditText
-    lateinit var password: EditText
-    lateinit var radioclient: RadioButton
-    lateinit var radiofreelancer: RadioButton
-    lateinit var rememberMe: CheckBox
-    lateinit var forgotpassword: TextView
-//    var blurLevel: Int = 50
-    var isBlurred: Boolean= false // Flag to track blur state
-    var activeField: Int? = null // To track the currently active field
+    private lateinit var glass: FKBlurView
+    private lateinit var username: EditText
+    private lateinit var password: EditText
+    private lateinit var radioclient: RadioButton
+    private lateinit var radiofreelancer: RadioButton
+    private lateinit var rememberMe: CheckBox
+    private lateinit var forgotpassword: TextView
+
+    private var isBlurred: Boolean = false // Flag to track blur state
+    private var activeField: Int? = null // To track the currently active field
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_login_page)
 
-        glass=findViewById(R.id.glassFrame)
-//        glass.setBlur(this,glass,80)
+//        // Initialize views
+//        glass = findViewById(R.id.glassFrame)
+//
+//// Limit the dimensions of the FKBlurView
+//        glass.layoutParams = glass.layoutParams.apply {
+//            width = resources.displayMetrics.widthPixels
+//            height = resources.displayMetrics.heightPixels / 2 // Half the screen height
+//        }
 
+        username = findViewById(R.id.userNameText)
+        password = findViewById(R.id.passText)
+        radioclient = findViewById(R.id.radioClient)
+        radiofreelancer = findViewById(R.id.radioFreelancer)
+        rememberMe = findViewById(R.id.rememberBox)
+        forgotpassword = findViewById(R.id.forgotPassword)
 
-
-        username= findViewById(R.id.userNameText)
-        password= findViewById(R.id.passText)
-
-        radioclient=findViewById(R.id.radioClient)
-        radiofreelancer= findViewById(R.id.radioFreelancer)
-        rememberMe= findViewById(R.id.rememberBox)
-        forgotpassword= findViewById(R.id.forgotPassword)
-
+        // Handle field clicks
         username.setOnClickListener {
             handleFieldClick(R.id.userNameText)
         }
-
         password.setOnClickListener {
             handleFieldClick(R.id.passText)
         }
 
-
-//        username.setOnFocusChangeListener{_, hasFocus->
-//            if(hasFocus) showBlur()
-//            else hideBlur()
-//        }
-//
-//        password.setOnFocusChangeListener{_, hasFocus->
-//            if(hasFocus) showBlur()
-//            else hideBlur()
-//        }
-
-//        rememberMe.setOnCheckedChangeListener { _, isChecked ->
-//            if (isChecked) showBlur()
-//            else hideBlur()
-//        }
-
-//        radioclient.setOnCheckedChangeListener { _, _ ->
-//            showBlur() // Show blur when a radio button is selected
-//        }
-//        radiofreelancer.setOnCheckedChangeListener { _, _ ->
-//            showBlur() // Show blur when a radio button is selected
-//        }
-
-
-
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        // Adjust window insets for proper padding
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
 
     private fun handleFieldClick(fieldId: Int) {
-        if (activeField != fieldId){
+        if (activeField != fieldId) {
             showBlur()
             activeField = fieldId
         }
-
     }
 
-
     private fun hideBlur() {
-        if (isBlurred){
+        if (isBlurred) {
             glass.visibility = View.GONE
             isBlurred = false
             activeField = null
+            Log.d("LoginPage", "Blur hidden")
         }
-
-//        glass.visibility = View.GONE
     }
-
     private fun showBlur() {
-        if (!isBlurred){
+        if (!isBlurred) {
             glass.visibility = View.VISIBLE
-            glass.setBlur(this@LoginPage, glass,50)
+
+            // Apply optimized blur effect
+            try {
+                glass.setBlur(this@LoginPage, glass, 25) // Adjust blur level
+                glass.scaleX // Optional: Scale bitmap
+            } catch (e: Exception) {
+                Log.e("LoginPage", "Error applying blur: ${e.message}")
+            }
+
             isBlurred = true
         }
-
-//        glass.visibility = View.VISIBLE
-//        glass.setBlur(this@LoginPage,glass,80)
-
-
     }
+
+
 
 }
