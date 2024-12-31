@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/newbglogin"
+    android:backgroundTintMode="add"
+    tools:context=".LoginPage">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="335dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/applogo1" />
+
+    <com.github.furkankaplan.fkblurview.FKBlurView
+        android:id="@+id/glassFrame"
+        android:layout_width="381dp"
+        android:layout_height="593dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+
+    </com.github.furkankaplan.fkblurview.FKBlurView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/userInputLayout"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="199dp"
+        android:textColorHint="#F6F4F4"
+        app:boxStrokeColor="#FDD835"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userNameText"
+            android:layout_width="310dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:drawablePadding="10dp"
+            android:hint="Username"
+            android:textColor="#F8F3F3"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:textColorHint="#F8F5F5"
+        app:boxStrokeColor="#FDD835"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="#F2DD7C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInputLayout"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFB300">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passText"
+            android:layout_width="310dp"
+            android:layout_height="58dp"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:hint="Password"
+            android:inputType="text|textPassword"
+            android:textColor="#F8F3F3"
+            android:textSize="20sp"
+            app:passwordToggleEnabled="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="124dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#F21616"
+        android:text="Login"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountText" />
+
+    <CheckBox
+        android:id="@+id/rememberBox"
+        android:layout_width="156dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
+        android:checked="false"
+        android:text="Remember Me"
+        android:textColor="#F2DD7C"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="267dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="85dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <RadioButton
+            android:id="@+id/radioClient"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:text="Client"
+            android:textColor="#F2DD7C"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioFreelancer"
+            android:layout_width="149dp"
+            android:layout_height="57dp"
+            android:drawableEnd="@drawable/baseline_people_24"
+            android:text="Freelancer"
+            android:textColor="#F2DD7C"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/accountText"
+        android:layout_width="191dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="49dp"
+        android:text="Don't Have an Account?"
+        android:textColor="#F2DD7C"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rememberBox" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="142dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="42dp"
+        android:backgroundTint="#E6AF0B"
+        android:text="Register"
+        android:textColor="#070707"
+        android:textSize="16sp"
+        app:icon="@drawable/baseline_app_registration_24"
+        app:iconPadding="0.5sp"
+        app:iconSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="142dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="34dp"
+        android:clickable="true"
+        android:text="Forgot Password?"
+        android:textColor="#F2DD7C"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

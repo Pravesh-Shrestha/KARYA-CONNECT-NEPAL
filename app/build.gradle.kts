@@ -5,12 +5,10 @@ plugins {
 
 android {
     namespace = "com.example.karyaconnectnepal"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.karyaconnectnepal"
         minSdk = 24
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -39,6 +37,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.fk.blur.view.android)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
