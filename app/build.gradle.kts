@@ -10,6 +10,8 @@ android {
     defaultConfig {
         applicationId = "com.example.karyaconnectnepal"
         minSdk = 24
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -36,12 +38,10 @@ android {
 
 dependencies {
 
-
-
-    implementation(libs.lottie)
+    implementation (libs.lottie)
+//    implementation(libs.fk.blur.view.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.fk.blur.view.android)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
