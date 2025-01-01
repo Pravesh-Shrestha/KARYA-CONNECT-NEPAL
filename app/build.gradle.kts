@@ -39,7 +39,7 @@ android {
 dependencies {
 
     implementation (libs.lottie)
-    implementation(libs.fk.blur.view.android)
+//    implementation(libs.fk.blur.view.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

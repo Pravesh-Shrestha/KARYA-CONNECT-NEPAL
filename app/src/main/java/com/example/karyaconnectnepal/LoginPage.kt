@@ -11,11 +11,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.github.furkankaplan.fkblurview.FKBlurView
+//import com.github.furkankaplan.fkblurview.FKBlurView
 
 class LoginPage : AppCompatActivity() {
 
-    lateinit var glass: FKBlurView
+//    lateinit var glass: FKBlurView
     lateinit var username: EditText
     lateinit var password: EditText
     lateinit var radioclient: RadioButton
@@ -23,15 +23,15 @@ class LoginPage : AppCompatActivity() {
     lateinit var rememberMe: CheckBox
     lateinit var forgotpassword: TextView
 //    var blurLevel: Int = 50
-    var isBlurred: Boolean= false // Flag to track blur state
-    var activeField: Int? = null // To track the currently active field
+//    var isBlurred: Boolean= false // Flag to track blur state
+//    var activeField: Int? = null // To track the currently active field
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login_page)
 
-        glass=findViewById(R.id.glassFrame)
+//        glass=findViewById(R.id.glassFrame)
 //        glass.setBlur(this,glass,80)
 
 
@@ -44,13 +44,13 @@ class LoginPage : AppCompatActivity() {
         rememberMe= findViewById(R.id.rememberBox)
         forgotpassword= findViewById(R.id.forgotPassword)
 
-        username.setOnClickListener {
-            handleFieldClick(R.id.userNameText)
-        }
-
-        password.setOnClickListener {
-            handleFieldClick(R.id.passText)
-        }
+//        username.setOnClickListener {
+//            handleFieldClick(R.id.userNameText)
+//        }
+//
+//        password.setOnClickListener {
+//            handleFieldClick(R.id.passText)
+//        }
 
 
 //        username.setOnFocusChangeListener{_, hasFocus->
@@ -86,36 +86,36 @@ class LoginPage : AppCompatActivity() {
         }
     }
 
-    private fun handleFieldClick(fieldId: Int) {
-        if (activeField != fieldId){
-            showBlur()
-            activeField = fieldId
-        }
-
-    }
-
-
-    private fun hideBlur() {
-        if (isBlurred){
-            glass.visibility = View.GONE
-            isBlurred = false
-            activeField = null
-        }
-
-//        glass.visibility = View.GONE
-    }
-
-    private fun showBlur() {
-        if (!isBlurred){
-            glass.visibility = View.VISIBLE
-            glass.setBlur(this@LoginPage, glass,50)
-            isBlurred = true
-        }
+//    private fun handleFieldClick(fieldId: Int) {
+//        if (activeField != fieldId){
+//            showBlur()
+//            activeField = fieldId
+//        }
+//
+//    }
+//
+//
+//    private fun hideBlur() {
+//        if (isBlurred){
+//            glass.visibility = View.GONE
+//            isBlurred = false
+//            activeField = null
+//        }
+//
+////        glass.visibility = View.GONE
+//    }
+//
+//    private fun showBlur() {
+//        if (!isBlurred){
+//            glass.visibility = View.VISIBLE
+//            glass.setBlur(this@LoginPage, glass,50)
+//            isBlurred = true
+//        }
 
 //        glass.visibility = View.VISIBLE
 //        glass.setBlur(this@LoginPage,glass,80)
 
 
-    }
+//    }
 
 }
