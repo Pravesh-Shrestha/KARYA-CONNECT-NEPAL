@@ -20,7 +20,6 @@ class LoginPage : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginPageBinding
 
-//    lateinit var glass: FKBlurView
 //    var blurLevel: Int = 50
 //    var isBlurred: Boolean= false // Flag to track blur state
 //    var activeField: Int? = null // To track the currently active field
