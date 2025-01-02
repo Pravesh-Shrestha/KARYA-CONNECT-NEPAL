@@ -1,5 +1,6 @@
 package com.example.karyaconnectnepal
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,17 +12,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.karyaconnectnepal.databinding.ActivityLoginPageBinding
+
 //import com.github.furkankaplan.fkblurview.FKBlurView
 
 class LoginPage : AppCompatActivity() {
 
-//    lateinit var glass: FKBlurView
-    lateinit var username: EditText
-    lateinit var password: EditText
-    lateinit var radioclient: RadioButton
-    lateinit var radiofreelancer: RadioButton
-    lateinit var rememberMe: CheckBox
-    lateinit var forgotpassword: TextView
+    lateinit var binding: ActivityLoginPageBinding
+
 //    var blurLevel: Int = 50
 //    var isBlurred: Boolean= false // Flag to track blur state
 //    var activeField: Int? = null // To track the currently active field
@@ -29,20 +27,27 @@ class LoginPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login_page)
+
+        // Initialize View Binding
+        binding = ActivityLoginPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 //        glass=findViewById(R.id.glassFrame)
 //        glass.setBlur(this,glass,80)
 
+        //set up views using binding
+        binding.userNameText
+        binding.passText
+        binding.radioClient
+        binding.radioFreelancer
+        binding.rememberBox
+        binding.forgotPassword
 
 
-        username= findViewById(R.id.userNameText)
-        password= findViewById(R.id.passText)
-
-        radioclient=findViewById(R.id.radioClient)
-        radiofreelancer= findViewById(R.id.radioFreelancer)
-        rememberMe= findViewById(R.id.rememberBox)
-        forgotpassword= findViewById(R.id.forgotPassword)
+        // Set up the listener for the registration text view
+        binding.registerButton.setOnClickListener {
+            navigateToRegistration()
+        }
 
 //        username.setOnClickListener {
 //            handleFieldClick(R.id.userNameText)
@@ -84,6 +89,11 @@ class LoginPage : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun navigateToRegistration() {
+        val intent = Intent(this, RegistrationActivity::class.java)
+        startActivity(intent)
     }
 
 //    private fun handleFieldClick(fieldId: Int) {

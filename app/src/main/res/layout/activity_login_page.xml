@@ -62,6 +62,7 @@
             android:drawableStart="@drawable/baseline_person_24"
             android:drawablePadding="10dp"
             android:hint="Username"
+            android:inputType="text"
             android:textColor="#F8F3F3"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
