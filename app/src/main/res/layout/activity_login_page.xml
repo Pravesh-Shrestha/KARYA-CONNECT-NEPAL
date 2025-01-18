@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bglogin"
     android:backgroundTintMode="add"
-    tools:context=".LoginPage">
+    tools:context=".UI.Activity.LoginPage">
 
     <ImageView
         android:id="@+id/imageView"
@@ -56,12 +56,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userNameText"
+            android:id="@+id/emailText"
             android:layout_width="310dp"
             android:layout_height="58dp"
             android:drawableStart="@drawable/baseline_person_24"
             android:drawablePadding="10dp"
-            android:hint="Username"
+            android:hint="E-mail"
             android:inputType="text"
             android:textColor="#F8F3F3"
             android:textSize="20sp" />
