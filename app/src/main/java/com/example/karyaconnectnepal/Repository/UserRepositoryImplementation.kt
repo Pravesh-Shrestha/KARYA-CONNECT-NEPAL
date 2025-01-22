@@ -1,0 +1,126 @@
+package com.example.karyaconnectnepal.Repository
+
+import android.widget.Toast
+import com.example.karyaconnectnepal.Model.UserModel
+import com.example.karyaconnectnepal.databinding.ActivityRegistrationBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
+class UserRepositoryImplementation : userRepository {
+
+    lateinit var registrationBinding: ActivityRegistrationBinding
+     var auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    var database : FirebaseDatabase = FirebaseDatabase.getInstance()
+    var ref : DatabaseReference = database.reference.child("users")
+
+    override fun login(email: String, password: String, callback: (Boolean, String, String) -> Unit) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val userId = auth.currentUser?.uid
+                if (userId != null) {
+                    getUserTypeFromDatabase(userId) { userType, success, message ->
+                        if (success) {
+                            callback(true, "Login Success",userType?.userType.toString())
+                        } else {
+                            callback(false, message,"")
+                        }
+                    }
+                } else {
+                    callback(false, "", "User ID not found")
+                }
+            } else {
+                callback(false, "", it.exception?.message.toString())
+            }
+        }
+//        auth.signInWithEmailAndPassword(email, password). addOnCompleteListener {
+//            if(it.isSuccessful){
+//                callback(true,"Login Success")
+//            }else{
+//                callback(false,it.exception?.message.toString())
+//            }
+//        }
+    }
+
+    override fun register(
+        email: String,
+        password: String,
+        callback: (Boolean, String, String) -> Unit
+    ) {
+        auth.createUserWithEmailAndPassword(email, password). addOnCompleteListener {
+            if(it.isSuccessful){
+                callback(true,"Registration Success", auth.currentUser?.uid.toString())
+            }else{
+                callback(false,it.exception?.message.toString(),"")
+            }
+        }
+    }
+
+    override fun addUserToDatabase(
+        userId: String,
+        userModel: UserModel,
+        callback: (Boolean, String) -> Unit
+    ) {
+
+        ref.child(userId).setValue(userModel).addOnCompleteListener {
+            if(it.isSuccessful){
+                callback(true, "Registration Success")
+            }else{
+                callback(false, it.exception?.message.toString())
+
+            }
+        }
+
+    }
+
+    override fun forgetPassword(email: String, callback: (Boolean, String) -> Unit) {
+        auth.sendPasswordResetEmail(email).addOnCompleteListener {
+            callback(true, "Reset mail sent to e-mail")
+        }
+    }
+
+    override fun getCurrentUser(): FirebaseUser? {
+        return auth.currentUser
+    }
+
+    override fun getUserFromDatabase(
+        userId: String,
+        callback: (UserModel?, Boolean, String) -> Unit
+    ) {
+        ref.child(userId).addValueEventListener(object:ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var model = snapshot.getValue(UserModel::class.java)
+                    callback(model,true,"sasas")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+               callback(null,false,"error")
+            }
+        })
+    }
+
+
+
+    override fun getUserTypeFromDatabase(userId: String, callback: (UserModel?, Boolean, String) -> Unit) {
+        ref.child(userId).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    val model = snapshot.getValue(UserModel ::class.java)
+                    callback(model,true,"")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(null, false, error.message)
+            }
+        })
+    }
+}
+
