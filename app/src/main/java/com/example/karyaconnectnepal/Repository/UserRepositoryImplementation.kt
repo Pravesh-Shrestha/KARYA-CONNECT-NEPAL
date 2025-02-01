@@ -2,7 +2,6 @@ package com.example.karyaconnectnepal.Repository
 
 import android.widget.Toast
 import com.example.karyaconnectnepal.Model.UserModel
-import com.example.karyaconnectnepal.databinding.ActivityRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -13,7 +12,6 @@ import com.google.firebase.database.ValueEventListener
 
 class UserRepositoryImplementation : userRepository {
 
-    lateinit var registrationBinding: ActivityRegistrationBinding
      var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     var database : FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -92,11 +90,17 @@ class UserRepositoryImplementation : userRepository {
         userId: String,
         callback: (UserModel?, Boolean, String) -> Unit
     ) {
-        ref.child(userId).addValueEventListener(object:ValueEventListener{
+        ref.child(userId).addListenerForSingleValueEvent(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    var model = snapshot.getValue(UserModel::class.java)
-                    callback(model,true,"sasas")
+                    val model = snapshot.getValue(UserModel::class.java)
+                    if(model != null) {
+                        callback(model, true, "User fetched successfully")
+                    }else{
+                        callback(null, false, "model is null")
+                    }
+                }else {
+                    callback(null, false, "User not found")
                 }
             }
 

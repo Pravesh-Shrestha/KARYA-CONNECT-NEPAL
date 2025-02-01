@@ -1,11 +1,14 @@
 package com.example.karyaconnectnepal.Viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.karyaconnectnepal.Model.UserModel
+import com.example.karyaconnectnepal.Repository.UserRepositoryImplementation
 import com.example.karyaconnectnepal.Repository.userRepository
 import com.google.firebase.auth.FirebaseUser
 
-class UserViewModel(var repo : userRepository) {
+class UserViewModel(var repo : UserRepositoryImplementation) : ViewModel(){
 
 
 
@@ -29,6 +32,22 @@ class UserViewModel(var repo : userRepository) {
         repo.forgetPassword(email, callback)
     }
 
+    // LiveData for general user data
+    var _user = MutableLiveData<UserModel?>()
+    val user: LiveData<UserModel?>
+        get() = _user
+//  var user= MutableLiveData<UserModel?>()
+////        get() = _user
+
+    // Fetch full user data from the database
+    fun getUserFromDatabase(userId: String) {
+        repo.getUserFromDatabase(userId) { user, success, message ->
+            if (success) {
+                _user.value = user
+            }
+        }
+    }
+
     fun getCurrentUser(): FirebaseUser?{
         return repo.getCurrentUser()
     }
@@ -45,9 +64,6 @@ class UserViewModel(var repo : userRepository) {
             }
         }
     }
-
-
-
 
 }
 
