@@ -30,7 +30,7 @@ class SplashPage : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
 
-        val username = sharedPreferences.getString("username", "").orEmpty()
+        val email = sharedPreferences.getString("email", "").orEmpty()
         val password = sharedPreferences.getString("password", "").orEmpty()
 
         // Delayed transition to the next activity

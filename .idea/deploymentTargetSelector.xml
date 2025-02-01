@@ -8,16 +8,13 @@
       <SelectionState runConfigName="SplashPage">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DashboardActivityClient">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="LoginPage">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="NavigationActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="NavigationActivity (1)">
+      <SelectionState runConfigName="DashboardActivityClient">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

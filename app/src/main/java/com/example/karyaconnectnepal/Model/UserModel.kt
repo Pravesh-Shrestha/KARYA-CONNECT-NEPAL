@@ -9,7 +9,7 @@ data class UserModel (
     var userType : String = "",
     var fullName : String = "",
     var email : String = "",
-    var Contact : String = "",
+    var contact : String = "",
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
@@ -25,7 +25,7 @@ data class UserModel (
         parcel.writeString(userType)
         parcel.writeString(fullName)
         parcel.writeString(email)
-        parcel.writeString(Contact)
+        parcel.writeString(contact)
     }
 
     override fun describeContents(): Int {
