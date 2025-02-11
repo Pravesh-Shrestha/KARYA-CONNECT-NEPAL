@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.karyaconnectnepal.Adapter.NearbyfreelancersAdapter
 import com.example.karyaconnectnepal.R
 import com.example.karyaconnectnepal.databinding.FragmentClientHomeBinding
 
@@ -35,6 +36,10 @@ class ClientHomeFragment : Fragment() {
             R.drawable.electrician,
             R.drawable.carpenter
         )
+        val adapter = NearbyfreelancersAdapter(freelancerName, freelancerJob, nearbyfreelancerImage)
+        binding.nearRecyclerView.layoutManager=LinearLayoutManager(requireContext())
+        binding.nearRecyclerView.adapter=adapter
+
 
     }
 
