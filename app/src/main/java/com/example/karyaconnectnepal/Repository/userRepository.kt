@@ -1,5 +1,7 @@
 package com.example.karyaconnectnepal.Repository
 
+import android.content.Context
+import android.net.Uri
 import com.example.karyaconnectnepal.Model.UserModel
 import com.google.firebase.auth.FirebaseUser
 
@@ -31,5 +33,9 @@ interface userRepository {
 
 
     fun getUserTypeFromDatabase(userId: String, callback: (UserModel?, Boolean, String) -> Unit)
+
+    fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit)
+
+    fun getFileNameFromUri(context: Context, uri: Uri): String?
 
 }

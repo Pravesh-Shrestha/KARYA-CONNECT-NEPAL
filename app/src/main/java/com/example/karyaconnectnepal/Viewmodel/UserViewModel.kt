@@ -8,7 +8,7 @@ import com.example.karyaconnectnepal.Repository.UserRepositoryImplementation
 import com.example.karyaconnectnepal.Repository.userRepository
 import com.google.firebase.auth.FirebaseUser
 
-class UserViewModel(var repo : UserRepositoryImplementation) : ViewModel(){
+class UserViewModel(var repo : UserRepositoryImplementation) {
 
 
 
