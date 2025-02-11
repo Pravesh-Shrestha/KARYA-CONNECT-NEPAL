@@ -72,6 +72,9 @@ class RegistrationActivity : AppCompatActivity() {
                             if(success){
                                 Toast.makeText(this@RegistrationActivity,
                                     message,Toast.LENGTH_LONG).show()
+                                val intent = Intent(this@RegistrationActivity, LoginPage::class.java)
+                                startActivity(intent)
+                                finish() // Finish RegistrationActivity so it doesn't stay in back stack
 
                             }else{
                                 Toast.makeText(this@RegistrationActivity,

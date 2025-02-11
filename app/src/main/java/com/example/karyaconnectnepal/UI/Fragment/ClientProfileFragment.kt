@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.karyaconnectnepal.Repository.UserRepositoryImplementation
 import com.example.karyaconnectnepal.databinding.FragmentClientProfileBinding
 import com.example.karyaconnectnepal.Viewmodel.UserViewModel
 
@@ -29,7 +30,7 @@ class ClientProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize UserViewModel directly without factory
-        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+        userViewModel = UserViewModel(UserRepositoryImplementation())
 
         // Observe user data
         userViewModel.user.observe(viewLifecycleOwner) { user ->

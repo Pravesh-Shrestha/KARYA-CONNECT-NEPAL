@@ -1,6 +1,9 @@
 package com.example.karyaconnectnepal.Repository
 
+import android.content.Context
+import android.net.Uri
 import android.widget.Toast
+import com.cloudinary.Cloudinary
 import com.example.karyaconnectnepal.Model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -126,5 +129,21 @@ class UserRepositoryImplementation : userRepository {
             }
         })
     }
+
+    override fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFileNameFromUri(context: Context, uri: Uri): String? {
+        TODO("Not yet implemented")
+    }
+
+    private val cloudinary = Cloudinary(
+        mapOf(
+            "cloud_name" to "dtegcviek",
+            "api_key" to "636548218447953",
+            "api_secret" to "N2vXM2WRadH9tA8IQF_i1P2i_m0"
+        )
+    )
 }
 
