@@ -30,9 +30,13 @@ class ClientHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val freelancerName = listOf("Raj Shrestha", "Hari Rai")
-        val freelancerJob = listOf("Electrician", "Carpenter")
+        val freelancerName = listOf("Raj Shrestha", "Hari Rai","Raj Shrestha", "Hari Rai","Raj Shrestha", "Hari Rai")
+        val freelancerJob = listOf("Electrician", "Carpenter","Electrician", "Carpenter","Electrician", "Carpenter")
         val nearbyfreelancerImage = listOf(
+            R.drawable.electrician,
+            R.drawable.carpenter ,
+            R.drawable.electrician,
+            R.drawable.carpenter,
             R.drawable.electrician,
             R.drawable.carpenter
         )
