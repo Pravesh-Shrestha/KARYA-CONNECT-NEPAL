@@ -23,27 +23,24 @@ class ClientHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentClientHomeBinding.inflate(inflater,container,false)
+        binding = FragmentClientHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val freelancerName = listOf("Raj Shrestha","Hari Rai")
-        val freelancerJob = listOf("Electrician","Carpenter")
-        val nearbyfreelancerImage= listOf(
+        val freelancerName = listOf("Raj Shrestha", "Hari Rai")
+        val freelancerJob = listOf("Electrician", "Carpenter")
+        val nearbyfreelancerImage = listOf(
             R.drawable.electrician,
             R.drawable.carpenter
         )
         val adapter = NearbyfreelancersAdapter(freelancerName, freelancerJob, nearbyfreelancerImage)
-        binding.nearRecyclerView.layoutManager=LinearLayoutManager(requireContext())
-        binding.nearRecyclerView.adapter=adapter
+        binding.nearRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.nearRecyclerView.adapter = adapter
 
 
     }
 
-        companion object {
-
-    }
 }
