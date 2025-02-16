@@ -25,7 +25,7 @@
             android:layout_marginBottom="8dp">
 
         <ImageView
-            android:id="@+id/menuImage"
+            android:id="@+id/freelancerImage"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="16dp"
@@ -38,20 +38,20 @@
             tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/menufooditem"
+                android:id="@+id/freelancername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Freelancer Name"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/menuImage"
-                app:layout_constraintStart_toEndOf="@+id/menuImage"
-                app:layout_constraintTop_toTopOf="@+id/menuImage"
+                app:layout_constraintBottom_toBottomOf="@+id/freelancerImage"
+                app:layout_constraintStart_toEndOf="@+id/freelancerImage"
+                app:layout_constraintTop_toTopOf="@+id/freelancerImage"
                 app:layout_constraintVertical_bias="0.044" />
 
             <TextView
-                android:id="@+id/menuprice"
+                android:id="@+id/freelancerjob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
@@ -61,7 +61,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/menuImage"
+                app:layout_constraintStart_toEndOf="@+id/freelancerImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
