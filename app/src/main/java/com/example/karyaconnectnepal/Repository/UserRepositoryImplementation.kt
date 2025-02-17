@@ -20,6 +20,8 @@ class UserRepositoryImplementation : userRepository {
     var database : FirebaseDatabase = FirebaseDatabase.getInstance()
     var ref : DatabaseReference = database.reference.child("users")
 
+//    var currentUserType: String? = null // Stores userType locally after login
+
     override fun login(email: String, password: String, callback: (Boolean, String, String) -> Unit) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
