@@ -38,4 +38,7 @@ interface userRepository {
 
     fun getFileNameFromUri(context: Context, uri: Uri): String?
 
+    //New Method: Check if user is a freelancer before allowing portfolio submission
+//    fun isFreelancer(userId: String, callback: (Boolean) -> Unit)
+
 }
