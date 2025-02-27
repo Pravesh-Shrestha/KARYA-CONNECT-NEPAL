@@ -18,7 +18,8 @@ class PortfolioRepository {
                 "portfolioData/skills" to portfolio.skills,
                 "portfolioData/certifications" to portfolio.certifications,
                 "portfolioData/experience" to portfolio.experience,
-                "portfolioData/portfolioDescription" to portfolio.portfolioDescription
+                "portfolioData/portfolioDescription" to portfolio.portfolioDescription,
+                "portfolioData/jobCategory" to portfolio.jobCategory
             )
             database.child(userId).updateChildren(updates).await()
             true
