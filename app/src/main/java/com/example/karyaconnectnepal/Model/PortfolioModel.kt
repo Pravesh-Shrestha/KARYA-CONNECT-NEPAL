@@ -6,5 +6,6 @@ data class PortfolioModel(
     val skills: List<String> = emptyList(),
     val certifications: List<String> = emptyList(),
     val experience: String = "",
-    val portfolioDescription: String = ""
+    val portfolioDescription: String = "",
+    val jobCategory: String = ""
 )
