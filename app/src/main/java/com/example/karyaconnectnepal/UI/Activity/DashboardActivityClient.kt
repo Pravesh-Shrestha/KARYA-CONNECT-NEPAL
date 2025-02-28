@@ -1,6 +1,7 @@
 package com.example.karyaconnectnepal.UI.Activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,10 +22,12 @@ class DashboardActivityClient : AppCompatActivity() {
         binding = ActivityDashboardClientBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = ClientTabAdapter(supportFragmentManager,lifecycle)
+        adapter = ClientTabAdapter(supportFragmentManager, lifecycle)
         binding.clientdashView.adapter = adapter
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            hideFreelancerPortfolio() // Ensures that the freelancer portfolio is hidden when switching
+
             when (item.itemId) {
                 R.id.clientnavHome -> binding.clientdashView.setCurrentItem(0, false)
                 R.id.clientnavSearch -> binding.clientdashView.setCurrentItem(1, false)
@@ -40,5 +43,13 @@ class DashboardActivityClient : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
+    }
+
+    private fun hideFreelancerPortfolio() {
+        val portfolioFragment = supportFragmentManager.findFragmentById(R.id.freelancer_portfolio_container)
+        portfolioFragment?.let {
+            supportFragmentManager.beginTransaction().remove(it).commit()
+        }
+        binding.freelancerPortfolioContainer.visibility = View.GONE
     }
 }
