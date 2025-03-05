@@ -30,32 +30,80 @@ class AuthUnitTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        authRepo = AuthRepoImpl(mockAuth) // Corrected to use AuthRepoImpl
+        authRepo = AuthRepoImpl(mockAuth)
     }
 
     @Test
     fun testRegister_Successful() {
         val email = "test@example.com"
         val password = "testPassword"
-        var expectedResult = "Initial Value" // Initial value to check update
+        var expectedResult = ""
 
-        // Mocking FirebaseAuth behavior
         `when`(mockAuth.createUserWithEmailAndPassword(any(), any())).thenReturn(mockTask)
         `when`(mockTask.isSuccessful).thenReturn(true)
 
-        // Callback that updates expectedResult
-        val callback = { success: Boolean, message: String ->
-            expectedResult = message
-        }
+        val callback = { success: Boolean, message: String -> expectedResult = message }
 
-        // Call the function under test
         authRepo.register(email, password, callback)
-
-        // Capture the listener and trigger onComplete
         verify(mockTask).addOnCompleteListener(captor.capture())
         captor.value.onComplete(mockTask)
 
-        // Assert expected message
-        assertEquals("Registration successful", expectedResult) // Ensure message matches AuthRepoImpl
+        assertEquals("Registration successful", expectedResult)
+    }
+
+    @Test
+    fun testRegister_Failure() {
+        val email = "test@example.com"
+        val password = "testPassword"
+        var expectedResult = ""
+
+        `when`(mockAuth.createUserWithEmailAndPassword(any(), any())).thenReturn(mockTask)
+        `when`(mockTask.isSuccessful).thenReturn(false)
+        `when`(mockTask.exception).thenReturn(Exception("Registration failed"))
+
+        val callback = { success: Boolean, message: String -> expectedResult = message }
+
+        authRepo.register(email, password, callback)
+        verify(mockTask).addOnCompleteListener(captor.capture())
+        captor.value.onComplete(mockTask)
+
+        assertEquals("Registration failed", expectedResult)
+    }
+
+    @Test
+    fun testLogin_Successful() {
+        val email = "test@example.com"
+        val password = "testPassword"
+        var expectedResult = ""
+
+        `when`(mockAuth.signInWithEmailAndPassword(any(), any())).thenReturn(mockTask)
+        `when`(mockTask.isSuccessful).thenReturn(true)
+
+        val callback = { success: Boolean, message: String -> expectedResult = message }
+
+        authRepo.login(email, password, callback)
+        verify(mockTask).addOnCompleteListener(captor.capture())
+        captor.value.onComplete(mockTask)
+
+        assertEquals("Login successful", expectedResult)
+    }
+
+    @Test
+    fun testLogin_Failure() {
+        val email = "test@example.com"
+        val password = "testPassword"
+        var expectedResult = ""
+
+        `when`(mockAuth.signInWithEmailAndPassword(any(), any())).thenReturn(mockTask)
+        `when`(mockTask.isSuccessful).thenReturn(false)
+        `when`(mockTask.exception).thenReturn(Exception("Login failed"))
+
+        val callback = { success: Boolean, message: String -> expectedResult = message }
+
+        authRepo.login(email, password, callback)
+        verify(mockTask).addOnCompleteListener(captor.capture())
+        captor.value.onComplete(mockTask)
+
+        assertEquals("Login failed", expectedResult)
     }
 }

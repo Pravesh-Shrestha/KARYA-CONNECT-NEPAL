@@ -5,18 +5,7 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SplashPage">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-02-28T02:31:05.483132200Z">
-          <Target type="DEFAULT_BOOT">
-            <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\user\.android\avd\Medium_Phone_API_35.avd" />
-            </handle>
-          </Target>
-        </DropdownSelection>
-        <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="LoginPage">
+      <SelectionState runConfigName="SplashPage (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -31,7 +31,7 @@
 //}
 
 
-package com.example.karyaconnectnepal.ViewModel
+package com.example.karyaconnectnepal.Viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -61,4 +61,3 @@ class ProjectViewModel() : ViewModel() {
         }
     }
 }
-
