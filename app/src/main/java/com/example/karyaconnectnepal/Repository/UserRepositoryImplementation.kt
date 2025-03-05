@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import com.cloudinary.Cloudinary
+import com.cloudinary.utils.ObjectUtils
 import com.example.karyaconnectnepal.Model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -12,11 +13,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class UserRepositoryImplementation : userRepository {
 
-     var auth: FirebaseAuth = FirebaseAuth.getInstance()
-
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var database : FirebaseDatabase = FirebaseDatabase.getInstance()
     var ref : DatabaseReference = database.reference.child("users")
 
@@ -41,13 +43,6 @@ class UserRepositoryImplementation : userRepository {
                 callback(false, "", it.exception?.message.toString())
             }
         }
-//        auth.signInWithEmailAndPassword(email, password). addOnCompleteListener {
-//            if(it.isSuccessful){
-//                callback(true,"Login Success")
-//            }else{
-//                callback(false,it.exception?.message.toString())
-//            }
-//        }
     }
 
     override fun register(
@@ -132,20 +127,11 @@ class UserRepositoryImplementation : userRepository {
         })
     }
 
-    override fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {
-        TODO("Not yet implemented")
-    }
 
     override fun getFileNameFromUri(context: Context, uri: Uri): String? {
-        TODO("Not yet implemented")
+        return uri.lastPathSegment
     }
 
-    private val cloudinary = Cloudinary(
-        mapOf(
-            "cloud_name" to "dtegcviek",
-            "api_key" to "636548218447953",
-            "api_secret" to "N2vXM2WRadH9tA8IQF_i1P2i_m0"
-        )
-    )
+
 }
 

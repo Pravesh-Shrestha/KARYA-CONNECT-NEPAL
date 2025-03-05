@@ -63,6 +63,9 @@ dependencies {
     androidTestImplementation("org.mockito:mockito-kotlin:3.2.0")
     implementation("com.cloudinary:cloudinary-android:2.1.0")
     implementation("com.squareup.picasso:picasso:2.8")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
     implementation(kotlin("test"))
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
 }
