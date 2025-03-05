@@ -15,7 +15,7 @@ import com.example.karyaconnectnepal.Adapter.ProjectAdapter
 import com.example.karyaconnectnepal.Model.PortfolioModel
 import com.example.karyaconnectnepal.Model.ProjectModel
 import com.example.karyaconnectnepal.ViewModel.PortfolioViewModel
-import com.example.karyaconnectnepal.ViewModel.ProjectViewModel
+import com.example.karyaconnectnepal.Viewmodel.ProjectViewModel
 import com.example.karyaconnectnepal.databinding.DialogAddProjectBinding
 import com.example.karyaconnectnepal.databinding.FragmentPortfolioFormBinding
 import com.google.firebase.auth.FirebaseAuth
