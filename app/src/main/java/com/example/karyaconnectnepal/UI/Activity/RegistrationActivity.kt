@@ -18,8 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class RegistrationActivity : AppCompatActivity() {
 
-    lateinit var registrationBinding : ActivityRegistrationBinding
-
+    lateinit var registrationBinding: ActivityRegistrationBinding
     lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,104 +26,56 @@ class RegistrationActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         registrationBinding = ActivityRegistrationBinding.inflate(layoutInflater)
-
         setContentView(registrationBinding.root)
 
         var repo = UserRepositoryImplementation()
         userViewModel = UserViewModel(repo)
 
-        registrationBinding.registerButtn.setOnClickListener{
+        registrationBinding.registerButtn.setOnClickListener {
             var email = registrationBinding.regemailText.text.toString()
             var password = registrationBinding.regpasswordText.text.toString()
             var fullName = registrationBinding.regfullnameText.text.toString()
-            var Contact = registrationBinding.regcontactText.text.toString()
+            var contact = registrationBinding.regcontactText.text.toString()
 
             var userType = ""
-            if(registrationBinding.regclientRadio.isChecked){
+            if (registrationBinding.regclientRadio.isChecked) {
                 userType = "Client"
-            }else{
+            } else {
                 userType = "Freelancer"
             }
 
-            if(userType.isEmpty()) {
-            registrationBinding.regclientRadio.error = "Please, Select a User "
-            registrationBinding.regfreelancerRadio.error = "Please, Select a User "
-            }else if(fullName.isEmpty()){
+            if (userType.isEmpty()) {
+                registrationBinding.regclientRadio.error = "Please, Select a User"
+                registrationBinding.regfreelancerRadio.error = "Please, Select a User"
+            } else if (fullName.isEmpty()) {
                 registrationBinding.regfullnameText.error = "Please, Enter your Full Name"
-
-            }else if(email.isEmpty()){
+            } else if (email.isEmpty()) {
                 registrationBinding.regemailText.error = "Please, Enter your email"
-
-            }else if(password.isEmpty()){
-                registrationBinding.regpasswordText.error = "Please, Enter password "
-
-            }else if(Contact.isEmpty()){
+            } else if (password.isEmpty()) {
+                registrationBinding.regpasswordText.error = "Please, Enter password"
+            } else if (contact.isEmpty()) {
                 registrationBinding.regcontactText.error = "Please, Enter your contact number"
-            }else{
-                userViewModel.register(email, password){
-                        success, message, userId ->
-                    if (success){
+            } else {
+                userViewModel.register(email, password) { success, message, userId ->
+                    if (success) {
                         var userModel = UserModel(
-                            userId.toString(),userType,fullName, email, Contact
+                            userId.toString(), userType, fullName, email, contact
                         )
-                        userViewModel.addUserToDatabase(userId, userModel){
-                                success, message ->
-                            if(success){
-                                Toast.makeText(this@RegistrationActivity,
-                                    message,Toast.LENGTH_LONG).show()
+                        userViewModel.addUserToDatabase(userId, userModel) { success, message ->
+                            if (success) {
+                                Toast.makeText(this@RegistrationActivity, message as String, Toast.LENGTH_LONG).show()
                                 val intent = Intent(this@RegistrationActivity, LoginPage::class.java)
                                 startActivity(intent)
                                 finish() // Finish RegistrationActivity so it doesn't stay in back stack
-
-                            }else{
-                                Toast.makeText(this@RegistrationActivity,
-                                    message,Toast.LENGTH_LONG).show()
+                            } else {
+                                Toast.makeText(this@RegistrationActivity, message as String, Toast.LENGTH_LONG).show()
                             }
                         }
-                    }else{
-                        Toast.makeText(this@RegistrationActivity,
-                            message,Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this@RegistrationActivity, message as String, Toast.LENGTH_LONG).show()
                     }
                 }
-
-
             }
-
-
-
-
-
-//            auth.createUserWithEmailAndPassword(email,password)
-//                .addOnCompleteListener {
-//                    if(it.isSuccessful){
-//                        var userId = auth.currentUser?.uid
-//
-//                        var userModel = UserModel(
-//                            userId.toString(), userType, fullName, email, Contact
-//                        )
-//
-//                        ref.child(userId.toString()).setValue(userModel).addOnCompleteListener {
-//                            if(it.isSuccessful){
-//                                Toast.makeText(this@RegistrationActivity, "Registration Success",
-//                                    Toast.LENGTH_LONG).show()
-//                            }else{
-//                                Toast.makeText(this@RegistrationActivity, it.exception?.message.toString(),
-//                                    Toast.LENGTH_LONG).show()
-//                            }
-//                        }
-//
-//                        Toast.makeText(this@RegistrationActivity, "Registration Success",
-//                            Toast.LENGTH_LONG).show()
-//
-//                       if(it.isSuccessful) {
-//                           finish()
-//                       }
-//                    }else{
-//                        Toast.makeText(this@RegistrationActivity, it.exception?.message.toString(),
-//                            Toast.LENGTH_LONG).show()
-//                    }
-//                }
-
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

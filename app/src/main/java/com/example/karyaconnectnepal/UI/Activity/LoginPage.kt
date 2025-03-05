@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.karyaconnectnepal.R
 import com.example.karyaconnectnepal.Repository.UserRepositoryImplementation
 import com.example.karyaconnectnepal.Viewmodel.UserViewModel
-import com.example.karyaconnectnepal.databinding.ActivityDashboardClientBinding
 import com.example.karyaconnectnepal.databinding.ActivityLoginPageBinding
 
 class LoginPage : AppCompatActivity() {
@@ -19,7 +18,7 @@ class LoginPage : AppCompatActivity() {
     lateinit var binding: ActivityLoginPageBinding
     lateinit var userViewModel: UserViewModel
 
-    @Override
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -49,36 +48,33 @@ class LoginPage : AppCompatActivity() {
 
             // Check if a user role is selected
             if (!binding.radioClient.isChecked && !binding.radioFreelancer.isChecked) {
-                Toast.makeText(this@LoginPage, "Please select a user type", Toast.LENGTH_LONG)
+                Toast.makeText(this@LoginPage, "Please select a user type" as String, Toast.LENGTH_LONG)
                     .show()
                 return@setOnClickListener
             }
 
-            userViewModel.login(email, password) { success,message,userType ->
+            userViewModel.login(email, password) { success, message, userType ->
                 if (success) {
                     if (userType == "Client") {
-                        Toast.makeText(this@LoginPage, message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LoginPage, message as String, Toast.LENGTH_LONG).show()
                         intent = Intent(this@LoginPage, DashboardActivityClient::class.java)
                         startActivity(intent)
                     } else if (userType == "Freelancer") {
-                        Toast.makeText(this@LoginPage, message, Toast.LENGTH_LONG).show()
-
-                        // Navigate to the freelancer dashboard
+                        Toast.makeText(this@LoginPage, message as String, Toast.LENGTH_LONG).show()
                         intent = Intent(this@LoginPage, DashboardActivityFreelancer::class.java)
                         startActivity(intent)
                     }
                 } else {
-                    Toast.makeText(this@LoginPage, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginPage, message as String, Toast.LENGTH_LONG).show()
                 }
             }
         }
-
 
         binding.forgotPassword.setOnClickListener {
             val email = binding.emailText.text.toString()
 
             userViewModel.forgetPassword(email) { success, message ->
-                Toast.makeText(this@LoginPage, message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoginPage, message as String, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -92,14 +88,10 @@ class LoginPage : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-    }// Closing bracket for onCreate
+    }
 
     private fun navigateToRegistration() {
         val intent = Intent(this@LoginPage, RegistrationActivity::class.java)
         startActivity(intent)
     }
 }
-
-
-
