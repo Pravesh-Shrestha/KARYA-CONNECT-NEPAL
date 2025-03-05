@@ -59,4 +59,6 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.6.1")
     implementation("com.cloudinary:cloudinary-android:2.1.0")
     implementation("com.squareup.picasso:picasso:2.8")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
 }

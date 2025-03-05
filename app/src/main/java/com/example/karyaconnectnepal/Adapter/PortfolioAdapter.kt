@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karyaconnectnepal.Model.PortfolioDisplayModel
+import com.example.karyaconnectnepal.R
 import com.example.karyaconnectnepal.databinding.ItemFreelancerPortfolioBinding
+import com.squareup.picasso.Picasso
 
 class PortfolioAdapter(
     private var portfolioList: List<PortfolioDisplayModel>,
-//    private val onItemClick: (PortfolioDisplayModel) -> Unit
     private val onProfileClick: (String) -> Unit // Callback to handle click navigation
 ) : RecyclerView.Adapter<PortfolioAdapter.PortfolioViewHolder>() {
 
@@ -17,7 +18,15 @@ class PortfolioAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(portfolio: PortfolioDisplayModel) {
             binding.freelancerName.text = portfolio.fullName
-            binding.freelancerJobCategory.text = portfolio.jobCategory
+            binding.freelancerJobCategory.text = portfolio.jobCategory.ifEmpty { "Not Specified" }
+
+            if (portfolio.profileImage.isNotEmpty()) {
+                Picasso.get()
+                    .load(portfolio.profileImage)
+                    .placeholder(R.drawable.profileicon) // Default image
+                    .error(R.drawable.profileicon) // Error image
+                    .into(binding.freelancerProfileImage) // Make sure this ImageView exists in your XML
+            }
 
             // Handle View Portfolio button click
             binding.viewPortfolioButton.setOnClickListener {

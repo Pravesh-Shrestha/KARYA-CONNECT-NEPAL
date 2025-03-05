@@ -1,54 +1,3 @@
-//package com.example.karyaconnectnepal.UI.Fragment
-//
-//import android.os.Bundle
-//import androidx.fragment.app.Fragment
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import com.example.karyaconnectnepal.Adapter.NearbyfreelancersAdapter
-//import com.example.karyaconnectnepal.R
-//import com.example.karyaconnectnepal.databinding.FragmentClientHomeBinding
-//
-//
-//class ClientHomeFragment : Fragment() {
-//    private lateinit var binding: FragmentClientHomeBinding
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    }
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        binding = FragmentClientHomeBinding.inflate(inflater, container, false)
-//        return binding.root
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val freelancerName = listOf("Raj Shrestha", "Hari Rai","Raj Shrestha", "Hari Rai","Raj Shrestha", "Hari Rai")
-//        val freelancerJob = listOf("Electrician", "Carpenter","Electrician", "Carpenter","Electrician", "Carpenter")
-//        val nearbyfreelancerImage = listOf(
-//            R.drawable.electrician,
-//            R.drawable.carpenter ,
-//            R.drawable.electrician,
-//            R.drawable.carpenter,
-//            R.drawable.electrician,
-//            R.drawable.carpenter
-//        )
-//        val adapter = NearbyfreelancersAdapter(freelancerName, freelancerJob, nearbyfreelancerImage)
-//        binding.nearRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        binding.nearRecyclerView.adapter = adapter
-//
-//
-//    }
-//
-//}
-
 package com.example.karyaconnectnepal.UI.Fragment
 
 import android.os.Bundle
@@ -59,14 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.karyaconnectnepal.Adapter.PortfolioAdapter
 import com.example.karyaconnectnepal.Model.PortfolioDisplayModel
 import com.example.karyaconnectnepal.R
-import com.example.karyaconnectnepal.UI.Activity.DashboardActivityFreelancer
 import com.example.karyaconnectnepal.ViewModel.PortfolioViewModel
 import com.example.karyaconnectnepal.databinding.FragmentClientHomeBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class ClientHomeFragment : Fragment() {
 
@@ -87,6 +35,8 @@ class ClientHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fetchLoggedInUserName()
 
         portfolioViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[PortfolioViewModel::class.java]
 
@@ -118,6 +68,26 @@ class ClientHomeFragment : Fragment() {
             .commit()
 
         requireActivity().findViewById<View>(R.id.freelancer_portfolio_container)?.visibility = View.VISIBLE
+    }
+
+    private fun fetchLoggedInUserName() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val userRef = FirebaseDatabase.getInstance().reference.child("users").child(userId)
+
+            userRef.child("fullName").get().addOnSuccessListener { snapshot ->
+                val userName = snapshot.value as? String
+                if (!userName.isNullOrEmpty()) {
+                    binding.userNameTextView.text = userName
+                } else {
+                    binding.userNameTextView.text = "User"
+                }
+            }.addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to fetch user name", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     override fun onDestroyView() {

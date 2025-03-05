@@ -222,11 +222,11 @@
         app:layout_constraintTop_toBottomOf="@+id/profileCard" />
 
     <ImageView
-        android:id="@+id/freelancerlogoutBtn"
-        android:layout_width="83dp"
-        android:layout_height="73dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="32dp"
+        android:id="@+id/clientlogoutBtn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
         android:src="@drawable/logouticon"
         app:layout_constraintBottom_toBottomOf="parent"

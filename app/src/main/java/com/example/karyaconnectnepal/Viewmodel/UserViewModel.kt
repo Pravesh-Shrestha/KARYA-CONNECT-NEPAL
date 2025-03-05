@@ -1,17 +1,22 @@
 package com.example.karyaconnectnepal.Viewmodel
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.karyaconnectnepal.Model.UserModel
 import androidx.lifecycle.viewModelScope
+import com.example.karyaconnectnepal.Repository.CommonRepository
 import com.example.karyaconnectnepal.Repository.UserRepositoryImplementation
 import com.example.karyaconnectnepal.Repository.userRepository
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch  // Import for launching coroutines
 
 
-class UserViewModel(var repo : UserRepositoryImplementation) {
+class UserViewModel(private val repo: UserRepositoryImplementation) : ViewModel() {
+
+    private val commonRepository = CommonRepository()
 
 
 
@@ -93,6 +98,11 @@ class UserViewModel(var repo : UserRepositoryImplementation) {
 //            _portfolioData.value = userData?.portfolioData
 //        }
 //    }
+
+//    fun uploadProfileImage(context: Context, imageUri: Uri, callback: (Boolean, String) -> Unit) {
+//        commonRepository.uploadProfileImage(context, imageUri, callback)
+//    }
+
 
 }
 

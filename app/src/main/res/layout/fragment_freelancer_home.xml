@@ -4,120 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".UI.Fragment.PortfolioFormFragment">
+    android:background="#F0DD9E"
+    tools:context=".UI.Fragment.PortfolioFormFragment"
+    android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-        <!-- Title -->
         <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView6"
+            android:layout_width="31dp"
             android:layout_height="wrap_content"
-            android:text="Create Portfolio"
-            android:textSize="22sp"
-            android:textStyle="bold"
+            android:text="Hi,"
             android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
-        <!-- Project Title -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/userNameTextView"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Project Title"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/projectTitleInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter project title"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Project Description -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Project Description"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/projectDescriptionInput"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:hint="Enter project description"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:gravity="top"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Project URL -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Project URL (Optional)"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/projectUrlInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter project link"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginBottom="12dp"
-            android:inputType="textUri" />
-
-        <!-- Upload Project Image -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Project Image"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/uploadImageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload Image"
-            android:backgroundTint="@color/red"
-            android:textColor="@color/white"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Submit Portfolio Button -->
-        <Button
-            android:id="@+id/submitPortfolioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit Portfolio"
-            android:backgroundTint="@color/red"
-            android:textColor="@color/white"
-            android:layout_marginTop="12dp" />
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
+
+
 </ScrollView>
