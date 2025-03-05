@@ -13,5 +13,6 @@ data class PortfolioModel(
 data class PortfolioDisplayModel(
     val userId: String = "",  // Freelancer's ID
     val fullName: String = "",
-    val jobCategory: String = ""
+    val jobCategory: String = "",
+    val profileImage: String = ""
 )

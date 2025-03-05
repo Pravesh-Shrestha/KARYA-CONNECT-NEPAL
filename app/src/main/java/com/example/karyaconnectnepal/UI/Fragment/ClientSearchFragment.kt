@@ -1,98 +1,105 @@
 package com.example.karyaconnectnepal.UI.Fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.karyaconnectnepal.Adapter.FreelancerAdapter
+import com.example.karyaconnectnepal.Adapter.PortfolioAdapter
+import com.example.karyaconnectnepal.Model.PortfolioDisplayModel
 import com.example.karyaconnectnepal.R
+import com.example.karyaconnectnepal.ViewModel.PortfolioViewModel
 import com.example.karyaconnectnepal.databinding.FragmentClientSearchBinding
 
-
 class ClientSearchFragment : Fragment() {
-        private lateinit var binding:FragmentClientSearchBinding
-        private lateinit var  adapter : FreelancerAdapter
-        private val originalfreelancerName = listOf("Raj Shrestha", "Hari Rai")
-        private val originalfreelancerjob = listOf("electrician","carpenter")
-        private val originalfreelancerImage = listOf(
-            R.drawable.electrician,
-            R.drawable.carpenter,
 
-        )
+    private var _binding: FragmentClientSearchBinding? = null
+    private val binding get() = _binding!!
 
+    private lateinit var portfolioViewModel: PortfolioViewModel
+    private lateinit var portfolioAdapter: PortfolioAdapter
+    private val portfolioList = mutableListOf<PortfolioDisplayModel>()
+    private val filteredList = mutableListOf<PortfolioDisplayModel>() // Stores search results
 
-        private val filteredfreelancerName = mutableListOf<String>()
-        private val filteredfreelancerjob = mutableListOf<String>()
-        private val filteredfreelancerImage = mutableListOf<Int>()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentClientSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            binding= FragmentClientSearchBinding.inflate(inflater,container,false)
-            adapter = FreelancerAdapter(filteredfreelancerName,filteredfreelancerjob,filteredfreelancerImage)
-            binding.freelancerRecylerView.layoutManager= LinearLayoutManager(requireContext())
-            binding.freelancerRecylerView.adapter=adapter
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            // set up for search view
+        portfolioViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[PortfolioViewModel::class.java]
 
-            setupSearchView()
-            // show all menu items
-            showAllMenu()
-
-            return binding.root
+        portfolioAdapter = PortfolioAdapter(filteredList) { userId ->
+            openFreelancerPortfolio(userId)
         }
 
-        private fun showAllMenu() {
-            filteredfreelancerName.clear()
-            filteredfreelancerjob.clear()
-            filteredfreelancerImage.clear()
+        binding.freelancerRecylerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.freelancerRecylerView.adapter = portfolioAdapter
 
+        fetchFreelancerPortfolios()
 
-            filteredfreelancerName.addAll(originalfreelancerName)
-            filteredfreelancerjob.addAll(originalfreelancerjob)
-            filteredfreelancerImage.addAll(originalfreelancerImage)
+        // Implement Search Feature
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                filterFreelancers(query ?: "")
+                return true
+            }
 
-            adapter.notifyDataSetChanged()
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterFreelancers(newText ?: "")
+                return true
+            }
+        })
+    }
 
-
+    // Fetch All Freelancer Portfolios
+    private fun fetchFreelancerPortfolios() {
+        portfolioViewModel.getAllFreelancerPortfolios()
+        portfolioViewModel.freelancerPortfolios.observe(viewLifecycleOwner) { freelancers ->
+            portfolioList.clear()
+            portfolioList.addAll(freelancers)
+            filterFreelancers(binding.searchView.query.toString()) // Filter when fetched
         }
+    }
 
-        private fun setupSearchView() {
-            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                android.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    filterMenuItems(query)
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    filterMenuItems(newText)
-                    return true
-
-                }
-            })
-
-        }
-
-        private fun filterMenuItems(query: String) {
-            filteredfreelancerName.clear()
-             filteredfreelancerjob.clear()
-            filteredfreelancerImage.clear()
-
-            originalfreelancerName.forEachIndexed { index, itemName ->
-                if (itemName.contains(query.toString(),ignoreCase=true)){
-                    filteredfreelancerName.add(itemName)
-                    filteredfreelancerjob.add(originalfreelancerjob[index])
-                    filteredfreelancerImage.add(originalfreelancerImage[index])
-
+    // Filter Freelancers by Job Category
+    private fun filterFreelancers(query: String) {
+        filteredList.clear()
+        if (query.isEmpty()) {
+            filteredList.addAll(portfolioList) // Show all if query is empty
+        } else {
+            for (freelancer in portfolioList) {
+                if (freelancer.jobCategory.contains(query, ignoreCase = true)) {
+                    filteredList.add(freelancer)
                 }
             }
-            adapter.notifyDataSetChanged()
+        }
+        portfolioAdapter.notifyDataSetChanged()
+    }
+
+    private fun openFreelancerPortfolio(userId: String) {
+        val fragment = FreelancerPortfolioFragment().apply {
+            arguments = Bundle().apply {
+                putString("userId", userId)
+            }
         }
 
-
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.freelancer_portfolio_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
