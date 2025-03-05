@@ -1,146 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0DD9E"
-    android:orientation="vertical"
-    android:paddingStart="6dp"
-    android:paddingEnd="6dp"
-    tools:context=".UI.Fragment.ClientProfileFragment">
+    android:padding="16dp"
+    tools:context=".UI.Fragment.FreelancerProfileFragment">
+
+    <!-- Profile Image with Edit Icon -->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profileCard"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Edit Icon Overlay -->
+
+            <ImageView
+                android:id="@+id/imageBrowse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profileicon" />
+
+            <ImageView
+                android:id="@+id/editProfileImage"
+                android:layout_width="63dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="-15dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="27dp"
+                android:padding="6dp"
+                android:src="@drawable/baseline_add_circle_outline_24"
+                app:tint="@color/white" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Freelancer Details Container -->
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="695dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout"
+        android:layout_width="375dp"
+        android:layout_height="194dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/background_profile_card"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileCard">
 
+        <!-- Name -->
 
-        <ImageView
-            android:id="@+id/imageBrowse"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/profileicon" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
 
+        </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button3"
-            android:layout_width="325dp"
-            android:layout_height="62dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="38dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="32dp"
-            android:backgroundTint="#ED2312"
-            android:elevation="5dp"
-            android:text="Edit Profile"
-            android:textAllCaps="false"
-            android:textSize="20dp" />
+        <!-- Email -->
+
+        <!-- Contact -->
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="10dp"
-            android:background="#F0DD9E"
-            android:elevation="2dp"
-            android:gravity="center_vertical"
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/portfolio_border_background"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_person_24"
+                app:tint="@color/black" />
 
             <TextView
-                android:layout_width="2dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
+                android:layout_marginStart="5dp"
                 android:text="Name:"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewFullName"
-                android:layout_width="wrap_content"
+                android:id="@+id/ViewClientFullName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18dp" />
-
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="10dp"
-            android:background="#F0DD9E"
-            android:elevation="2dp"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/portfolio_border_background"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_email_24"
+                app:tint="@color/black" />
 
             <TextView
-                android:layout_width="3dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
+                android:layout_marginStart="5dp"
                 android:text="Email:"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewEmail"
-                android:layout_width="wrap_content"
+                android:id="@+id/ViewClientEmail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18dp" />
-
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
         </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="#F0DD9E"
-            android:elevation="2dp"
-            android:gravity="center_vertical"
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/portfolio_border_background"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:layout_marginStart="15dp"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_phone_24"
+                app:tint="@color/black" />
 
             <TextView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:text="Contact:"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/textViewContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18dp" />
+                android:layout_marginStart="5dp"
+                android:text="Contact:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ViewClientContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
-
     </LinearLayout>
 
-    <LinearLayout
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonEditProfile"
+        android:layout_width="208dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/red"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileCard" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/freelancerlogoutBtn"
+        android:layout_width="83dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:src="@drawable/logouticon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
-
-</FrameLayout>
+    <!-- Edit Profile Button -->
+</androidx.constraintlayout.widget.ConstraintLayout>

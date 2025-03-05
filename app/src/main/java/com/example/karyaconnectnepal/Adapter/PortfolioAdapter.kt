@@ -9,7 +9,8 @@ import com.example.karyaconnectnepal.databinding.ItemFreelancerPortfolioBinding
 
 class PortfolioAdapter(
     private var portfolioList: List<PortfolioDisplayModel>,
-    private val onItemClick: (PortfolioDisplayModel) -> Unit
+//    private val onItemClick: (PortfolioDisplayModel) -> Unit
+    private val onProfileClick: (String) -> Unit // Callback to handle click navigation
 ) : RecyclerView.Adapter<PortfolioAdapter.PortfolioViewHolder>() {
 
     inner class PortfolioViewHolder(private val binding: ItemFreelancerPortfolioBinding) :
@@ -18,7 +19,12 @@ class PortfolioAdapter(
             binding.freelancerName.text = portfolio.fullName
             binding.freelancerJobCategory.text = portfolio.jobCategory
 
-            binding.root.setOnClickListener { onItemClick(portfolio) }
+            // Handle View Portfolio button click
+            binding.viewPortfolioButton.setOnClickListener {
+                onProfileClick(portfolio.userId) // Pass userId to navigate
+            }
+
+//            binding.root.setOnClickListener { onItemClick(portfolio) }
         }
     }
 

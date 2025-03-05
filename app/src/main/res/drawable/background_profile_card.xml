@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer Shadow for a Soft Elevated Look -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- Inner Rounded Card with Gradient & Border -->
+    <item android:left="4dp" android:right="4dp" android:top="4dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <!-- Gradient Background for a Professional Look -->
+            <gradient
+                android:angle="90"
+                android:startColor="#FFD000"
+                android:endColor="#F4E0B1"
+                android:type="linear"/>
+
+            <!-- Thin Black Border -->
+<!--            <stroke android:width="2dp" android:color="#C11313"/>-->
+
+            <!-- Rounded Corners -->
+            <corners android:radius="18dp" />
+
+            <!-- Soft Elevation Shadow -->
+            <padding android:bottom="4dp"/>
+        </shape>
+    </item>
+
+</layer-list>

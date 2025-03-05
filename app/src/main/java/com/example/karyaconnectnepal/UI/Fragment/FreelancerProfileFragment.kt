@@ -1,5 +1,6 @@
 package com.example.karyaconnectnepal.UI.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.karyaconnectnepal.Repository.UserRepositoryImplementation
+import com.example.karyaconnectnepal.UI.Activity.LoginPage
 import com.example.karyaconnectnepal.Viewmodel.UserViewModel
 import com.example.karyaconnectnepal.databinding.FragmentFreelancerProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class FreelancerProfileFragment : Fragment() {
 
@@ -57,6 +60,14 @@ class FreelancerProfileFragment : Fragment() {
             binding.ViewFreelancerFullName.text = "No user logged in"
             binding.textViewEmail.text = "N/A"
             binding.textViewContact.text = "N/A"
+        }
+        binding.clientlogoutbtn.setOnClickListener {
+            FirebaseAuth.getInstance().signOut() // Logs out the user
+
+            // Navigate to Login Page
+            val intent = Intent(requireContext(), LoginPage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 

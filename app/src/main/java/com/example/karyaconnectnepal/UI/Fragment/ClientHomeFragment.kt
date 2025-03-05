@@ -90,8 +90,8 @@ class ClientHomeFragment : Fragment() {
 
         portfolioViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[PortfolioViewModel::class.java]
 
-        portfolioAdapter = PortfolioAdapter(portfolioList) { portfolio ->
-            openFreelancerPortfolio(portfolio.userId)
+        portfolioAdapter = PortfolioAdapter(portfolioList) { userId ->
+            openFreelancerPortfolio(userId)
         }
 
         binding.freelancerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
