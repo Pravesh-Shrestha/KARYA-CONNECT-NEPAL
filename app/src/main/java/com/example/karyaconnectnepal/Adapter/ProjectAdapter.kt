@@ -1,5 +1,5 @@
 package com.example.karyaconnectnepal.Adapter
-
+//imported
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,5 +26,7 @@ class ProjectAdapter(private val projectList: List<ProjectModel>) :
         holder.bind(projectList[position])
     }
 
-    override fun getItemCount(): Int = projectList.size
 }
+
+
+

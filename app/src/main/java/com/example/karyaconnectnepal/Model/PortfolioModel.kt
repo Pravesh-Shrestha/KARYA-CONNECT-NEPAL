@@ -15,3 +15,6 @@ data class PortfolioDisplayModel(
     val fullName: String = "",
     val jobCategory: String = ""
 )
+
+
+

@@ -1,7 +1,5 @@
 package com.example.karyaconnectnepal.Repository
-
 import com.google.firebase.auth.FirebaseAuth
-
 class AuthRepoImpl(private val auth: FirebaseAuth) : AuthRepo {
 
     override fun login(email: String, password: String, callback: (Boolean, String) -> Unit) {
@@ -13,7 +11,6 @@ class AuthRepoImpl(private val auth: FirebaseAuth) : AuthRepo {
             }
         }
     }
-
     override fun register(email: String, password: String, callback: (Boolean, String) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
@@ -23,7 +20,6 @@ class AuthRepoImpl(private val auth: FirebaseAuth) : AuthRepo {
             }
         }
     }
-
     override fun forgetPassword(email: String, callback: (Boolean, String) -> Unit) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
