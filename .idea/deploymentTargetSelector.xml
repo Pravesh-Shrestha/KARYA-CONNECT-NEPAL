@@ -8,6 +8,9 @@
       <SelectionState runConfigName="SplashPage">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="DashboardActivityClient">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
       <SelectionState runConfigName="DashboardActivityFreelancer">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
