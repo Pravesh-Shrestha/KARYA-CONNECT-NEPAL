@@ -26,6 +26,7 @@ class ProjectAdapter(private val projectList: List<ProjectModel>) :
         holder.bind(projectList[position])
     }
 
+    override fun getItemCount(): Int = projectList.size
 }
 
 
